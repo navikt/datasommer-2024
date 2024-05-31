@@ -1,5 +1,5 @@
 ---
-title: "matplotlib demo"
+title: "QUARTO-demo"
 format:
   html:
     code-fold: true
@@ -24,4 +24,12 @@ ax.plot(theta, r)
 ax.set_rticks([0.5, 1, 1.5, 2])
 ax.grid(True)
 plt.show()
+```
+
+
+```{python}
+import plotly.express as px
+data_canada = px.data.gapminder().query("country == 'Canada'")
+fig = px.bar(data_canada, x='year', y='pop')
+fig.show()
 ```
