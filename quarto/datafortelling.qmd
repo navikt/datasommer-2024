@@ -1,11 +1,22 @@
 ---
 title: "QUARTO-demo"
+author: "team-datasommer"
+theme: minty
+toc: true
+toc-location: left
+number-sections: true
+highlight-style: pygments
 format:
   html:
+    page-layout: article
     code-fold: true
+    grid:
+      sidebar-width: 150px
+      body-width: 800px
+      margin-width: 100px
 jupyter: python3
 ---
-
+## Intro
 For a demonstration of a line plot on a polar axis, see @fig-polar.
 
 ```{python}
@@ -33,3 +44,22 @@ data_canada = px.data.gapminder().query("country == 'Canada'")
 fig = px.bar(data_canada, x='year', y='pop')
 fig.show()
 ```
+
+## Demo
+
+Her her vi brukt åpne data fra nav til å genrere et histogram over antall arbeidsøkere. 
+
+NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. Dette datasett inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn , med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
+```{python}
+#| label: arbeidsøkere-fig
+#| fig-cap: "Histogram over antall arbeidssøkere innen hver yrkeskategori. Visualiseringen inneholder tall fra $01.01.2002$ - $31.12.2017$."
+from get_data import get_data
+df = get_data()
+
+fig = px.histogram(df, x= 'aar', y = 'antall_arbeidssokere', color = 'yrke_grovgruppe')
+fig.update_xaxes(tickangle=90, tickmode = 'linear')
+fig.update_layout(bargap = 0.2)
+fig.show()
+```
+
+Her kan jeg også legge inn likninger: $E = mc^{2}$.
