@@ -4,6 +4,6 @@ ipykernel
 numpy
 pandas
 google-cloud-secret-manager
-gcloud_config_helper
+gcloud-config-helper
 setuptools
 google-cloud-bigquery
