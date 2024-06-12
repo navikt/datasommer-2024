@@ -14,52 +14,79 @@ format:
       sidebar-width: 150px
       body-width: 800px
       margin-width: 100px
+    other-links: 
+      - text: Antall arbeidssøkere datasett
+        href: https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664
 jupyter: python3
 ---
-## Intro
-For a demonstration of a line plot on a polar axis, see @fig-polar.
 
-```{python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis"
+## Intro til datafortellinger
 
-import numpy as np
-import matplotlib.pyplot as plt
+### Hva er en datafortelling?
 
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'} 
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
+I NAV bruker vi datafortellinger for å formidle innsikt vi finner i daten slik at verdien eller kunnskapen vi finner blir delt med andre. Datafortellinger er enkle statiske nettsider som kan inneholde interaktive komponenter som plott og kode sammen med forklarende tekst. Her kan du finne den mest hensiktsmessige måten å formidle dine data og funn. Når en datafortelling er klar for å deles med NAV kan den publiseres til [datamarkedsplassen](https://data.ansatt.nav.no/). Det finnes mange enkle verktøy for å produsere nettsider som kan publiseres som datafortellinger, men det vanligste er programmet [Quarto](https://quarto.org/).
+
+Her kan dere finne noen fine eksempler på ulike datafortelleinger andre har laget: 
+
+Dashboard: [Hvor er damene?](https://data.ansatt.nav.no/story/7ea943c9-ae07-4d75-9b65-d775c05230dc/make_dashboard.html)
+
+Article: [Veileder for kunnskapsbaserte språkmodeller](https://data.ansatt.nav.no/story/58aa330c-3a72-470e-926f-22e029719879/bakgrunn.html)
 
 
-```{python}
-import plotly.express as px
-data_canada = px.data.gapminder().query("country == 'Canada'")
-fig = px.bar(data_canada, x='year', y='pop')
-fig.show()
-```
+#### Hva er Quarto?
+Quarto kan produsere nettsider, dashboards og presentasjoner ved å bruke jupyter notebooks eller ved hjelp av pandoc markdown og kodesnutter. Du kan skrive kode for å lage dynamisk innhold i enten python, R, Julia eller Observable JS. Quarto kan integreres med VS Code ved hjelp av en extension.
+
+For å laste ned Quarto, gå til https://quarto.org/docs/download/tarball.html
+
+
+Hvis dere ønsker mer detaljer informasjon om datafortellinger og quarto kan dere lese på KNADA docs, som dere finner her https://docs.knada.io/analyse/datafortellinger/.
+
 
 ## Demo
 
-Her her vi brukt åpne data fra nav til å genrere et histogram over antall arbeidsøkere. 
+NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. Arbeidssøkere er personer som søker arbeid ved NAV og som er tilgjengelige for det arbeidet som søkes. Hovedregelen er at man anses som arbeidssøker hos NAV hvis man har meldt seg eller fornyet meldingen i løpet av de to siste ukene. 
 
-NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. Dette datasett inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn , med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
+For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke og år. Du kan lese ler om selve datasettet [her](https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664). Datasett inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
+
+```{python}
+#| label: fig-antall
+#| fig-cap: "Antall arbeidssokere fra 2002 til 2017"
+
+import numpy as np
+import matplotlib.pyplot as plt
+import plotly.express as px
+from get_data import get_data
+
+df = get_data()
+hist = px.histogram(df, x = 'aar', y = 'antall_arbeidssokere')
+hist.update_xaxes(tickangle=90, tickmode = 'linear')
+hist.update_layout(bargap = 0.2)
+hist.show()
+
+```
+
+@fig-antall viser en oversikt over antall arbeidssøkere fordelt på år, for 2002 til 2017. 
+
 ```{python}
 #| label: arbeidsøkere-fig
 #| fig-cap: "Histogram over antall arbeidssøkere innen hver yrkeskategori. Visualiseringen inneholder tall fra $01.01.2002$ - $31.12.2017$."
-from get_data import get_data
-df = get_data()
-
+#| 
 fig = px.histogram(df, x= 'aar', y = 'antall_arbeidssokere', color = 'yrke_grovgruppe')
 fig.update_xaxes(tickangle=90, tickmode = 'linear')
 fig.update_layout(bargap = 0.2)
 fig.show()
 ```
 
-Her kan jeg også legge inn likninger: $E = mc^{2}$.
+La oss si at vi ønsker å se vidre på hvordan fordelingen ser ut på yrkesgruppen Helse, pleie og omsorg. 
+
+```{python}
+#| label: fig
+#| fig-cap: ""
+#| 
+fig = px.histogram(df[df.yrke_grovgruppe == "Helse, pleie og omsorg"], x= 'aar', y = 'antall_arbeidssokere', color = 'yrke_grovgruppe')
+fig.update_xaxes(tickangle=90, tickmode = 'linear')
+fig.update_layout(bargap = 0.2)
+fig.show()
+```
+
+Her kan jeg også legge inn en helt tilfeldig likning om jeg ønsker det. For eksempel $E = mc^{2}$.
