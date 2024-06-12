@@ -26,9 +26,9 @@ class Tilgangskontroll:
         Konstruktør for Tilgangskontroll klassen.
         """
         self.brukernavn = self._hent_brukernavn()
-        self._knada_hemeligheter = self._hent_hemmeligheter("KNADA")
+        self.knada_hemeligheter = self._hent_hemmeligheter("KNADA")
         self.prosjektnavn = self._hent_prosjektnavn()
-        self.gcp_hemmeligheter = self._hent_hemmeligheter("GCP")
+        #self.gcp_hemmeligheter = self._hent_hemmeligheter("GCP")
 
     def sjekk_om_kjoerelokasjon_er_lokal(self) -> bool:
         """
@@ -81,7 +81,7 @@ class Tilgangskontroll:
         str
             Prosjektnavnet.
         """
-        prosjektnavn = self._knada_hemeligheter["GCP_PAW_PROD"].get("project_id")
+        prosjektnavn = self.knada_hemeligheter["GCP_PAW_PROD"].get("project_id")
         return prosjektnavn
 
 
@@ -103,6 +103,8 @@ class Tilgangskontroll:
             lokasjon_hemmeligheter = f"projects/{self.prosjektnavn}/secrets/knorten_{self.brukernavn}/versions/latest"
         elif kilde == "KNADA" and "KNADA_TEAM_SECRET" in os.environ:
             lokasjon_hemmeligheter = f"{os.environ['KNADA_TEAM_SECRET']}/versions/latest"
+        elif kilde == "KNADA" and self.sjekk_om_kjoerelokasjon_er_lokal():
+            lokasjon_hemmeligheter = input("Legg inn lokasjon for hemmeligheter e.g. projects/[identifikator]/secrets/[gcp-prosjekt/versions/latest: ")
         else:
             return
         secrets_instans = secretmanager.SecretManagerServiceClient(
