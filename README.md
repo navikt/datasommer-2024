@@ -4,12 +4,13 @@ Repo som skal brukes som demo for å innføre datastudentene i datariggen de ska
 
 ## Innhold
 
-### Big Query
-**Hva er Big Query?**
+### BigQuery
+**Hva er BigQuery?**
+[BigQuery](https://console.cloud.google.com/bigquery) er den tilhørende databaseløsningen til Google Cloud Platform (GCP) og er den som oftes brukes for å dele dataprodukter internt eller på tvers av team. BigQuery fungerer sømløst med tilgangsstyringen i CGP og sørger for at du kan kjøre SQL-spørringer mot databasene du har tilgang til. Du kan enten gjøre spørringer direkte i [konsollen](https://console.cloud.google.com/bigquery), eller du kan koble deg til BigQuery med en database-connection i for eksempel Python.
 
 ### KnadaVM / GCP VM
 **Hva er KnadaVM?**
-Fordi vi ofte jobber med sensitiv data som ikke skal leve på enkeltes lokalmaskiner eller fordi vi trenger mer utregningsressurser enn det vi har lokalt, så utvikler vi mest i KnadaVM. KnadaVM er en virtuell maskin som hostes av Google Cloud Platform (GCP). Vm-en har begrensede tilganger til adresser på nettet, men hvor det er mulig å be om åpninger til det man anser som viktig for å få gjort det man skal. KnadaVM har for eksempel åpning mot databasene vi bruker, mot pypi, mot github og flere andre kilder som man finner i dokumentasjonen på [Nada sin docs](https://docs.knada.io/analyse/allowlisting/).
+Fordi vi ofte jobber med sensitiv data som ikke skal leve på enkeltes lokalmaskiner eller fordi vi trenger mer utregningsressurser enn det vi har lokalt, så utvikler vi mest i KnadaVM. KnadaVM er en virtuell maskin som hostes av GCP. Vm-en har begrensede tilganger til adresser på nettet, men hvor det er mulig å be om åpninger til det man anser som viktig for å få gjort det man skal. KnadaVM har for eksempel åpning mot databasene vi bruker, mot pypi, mot github og flere andre kilder som man finner i dokumentasjonen på [Nada sin docs](https://docs.knada.io/analyse/allowlisting/).
 
 For å sette opp en KnadaVM trenger man et nais-team som VM-en skal tilhøre. Spør din leder om å bli lagt til i et nais-team. Private VM-er for bruk til individuell utforskning og utvikling opprettes på [Knorten](https://knorten.knada.io/oversikt). For å opprette en kraftigere maskin for kjøring av maskinlæring kan man ta kontakt med leder, NADA eller opprette det selv i GCP. Pass på at du har tillatelse til det fra team eller leder før du oppretter det selv, da det er kostnad knyttet til å opprette kraftigere VM-er.
 
