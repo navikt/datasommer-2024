@@ -7,10 +7,10 @@ from dataverk_airflow import python_operator, quarto_operator
 # 1. Hva er Airflow og hvor finnes det? Logge inn på teamet
 # 2. Directed acyclic graph (DAG) samler tasks, som er filer som kjører kode
 # 3. Hvordan kjøre en DAG og lese loggene
-# 4. Variabler i Airflow UI
+# 4. Variabler i Airflow UI, med feil og varsler
 # 5. dataverk_airflow på PyPi fra Nada. Dokumentasjon tre steder
 # 6. Argumenter til en DAG og til tasks
-# 7. Task som henter data og oppdaterer en datafortelling
+# 7. Task som henter BQ-data og oppdaterer en datafortelling
 
 dag_name = "eksempel_dag"
 default_args = {
@@ -26,7 +26,7 @@ default_args = {
 with DAG(
     dag_name,
     doc_md="Beskrivelse som kommer i Airflow UI",
-    schedule_interval="0 6 * * *", # daglig 06:00
+    schedule_interval="0 6 * * *", # kronjob - daglig 06:00
     max_active_runs=1,
     start_date=datetime(2024, 5, 31, tzinfo=pendulum.timezone("Europe/Oslo")),
     catchup=False,
