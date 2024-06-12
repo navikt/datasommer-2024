@@ -127,8 +127,8 @@ class Tilgangskontroll:
             Team token.
         """
         if dev_env == "PROD":
-            env = "team_token"
+            env = "team_token_dmp"
         elif dev_env == "DEV":
-            env = "team_token_dev"
+            env = "team_token_dev_dmp"
         team_token = self.gcp_hemmeligheter[env]
         return team_token

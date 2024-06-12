@@ -6,3 +6,4 @@ pandas
 google-cloud-secret-manager
 gcloud_config_helper
 setuptools
+google-cloud-bigquery
