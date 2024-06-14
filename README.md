@@ -2,7 +2,13 @@
 
 Repo som skal brukes som demo for å innføre datastudentene i datariggen de skal bruke i sommer. Utfyllende informasjon om temaene i denne demoen kan man finne på https://docs.knada.io/
 
-## Innhold
+## Ting å huske på
+
+- Ikke push hardkodede hemmeligheter, api-tokens, brukernavn eller passord til Git. Bruk en secret manager. Vær veldig obs på at hemmeligheter kan bli lastet opp til git hvis de er printet i en notebook. Bruk derfor nb-stripout for å fjerne output fra notebooks før du commiter til git. Lenke [her](https://pypi.org/project/nbstripout/0.2.5/). 
+- For å bruke KnadaVM eller BigQuery utenfra konsollen må man ha installert [nais](https://doc.nais.io/operate/naisdevice/how-to/install/) og [Gcloud CLI](https://cloud.google.com/sdk/docs/install).
+- Vær obs på hva man installerer på lokal maskin. Pass på malware og ha et forhold til datatilganger til apper. 
+
+## Innhold for WS
 
 ### BigQuery
 **Hva er BigQuery?**
