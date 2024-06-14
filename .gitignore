@@ -6,3 +6,4 @@
 *__pycache__
 *datafortelling_files
 *.egg-info
+config.ini
