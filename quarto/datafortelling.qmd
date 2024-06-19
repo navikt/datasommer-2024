@@ -18,15 +18,20 @@ format:
       - text: Antall arbeidssøkere datasett
         href: https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664
 jupyter: python3
+execute: 
+  echo: false
+  warning: false
+  include: false
 ---
 
 ## Intro til datafortellinger
+I NAV bruker vi datafortellinger for å formidle innsikt vi får ut av dataene våre.
 
 ### Hva er en datafortelling?
 
-I NAV bruker vi datafortellinger for å formidle innsikt vi finner i daten slik at verdien eller kunnskapen vi finner blir delt med andre. Datafortellinger er enkle statiske nettsider som kan inneholde interaktive komponenter som plott og kode sammen med forklarende tekst. Her kan du finne den mest hensiktsmessige måten å formidle dine data og funn. Når en datafortelling er klar for å deles med NAV kan den publiseres til [datamarkedsplassen](https://data.ansatt.nav.no/). Det finnes mange enkle verktøy for å produsere nettsider som kan publiseres som datafortellinger, men det vanligste er programmet [Quarto](https://quarto.org/).
+Datafortellinger er nettsider som kan inneholde interaktive elementer som grafer og kode, sammen med forklarende tekst. Når en datafortelling er ferdig og klar til å deles med andre i NAV, kan den publiseres på [datamarkedsplassen](https://data.ansatt.nav.no/) og dermed bli tilgjengelig for andre. Datafortellinger gjør det enkelt å dele og tilgjengeliggjøre dine funn på en brukervennlig måte. Det finnes mange enkle verktøy for å produsere nettsider som kan publiseres som datafortellinger, men det vanligste er programmet her i NAV [Quarto](https://quarto.org/).
 
-Her kan dere finne noen fine eksempler på ulike datafortelleinger andre har laget: 
+Her kan dere finne noen fine eksempler på ulike datafortelleinger laget av andre i NAV: 
 
 Dashboard: [Hvor er damene?](https://data.ansatt.nav.no/story/7ea943c9-ae07-4d75-9b65-d775c05230dc/make_dashboard.html)
 
@@ -34,19 +39,19 @@ Article: [Veileder for kunnskapsbaserte språkmodeller](https://data.ansatt.nav.
 
 
 #### Hva er Quarto?
-Quarto kan produsere nettsider, dashboards og presentasjoner ved å bruke jupyter notebooks eller ved hjelp av pandoc markdown og kodesnutter. Du kan skrive kode for å lage dynamisk innhold i enten python, R, Julia eller Observable JS. Quarto kan integreres med VS Code ved hjelp av en extension.
+Quarto kan produsere nettsider, dashboards og presentasjoner. Quarto .qdm filer inneholder en kombinasjon av  markdown og kodesnutter; Du kan i disse filene skrive kode for å lage dynamisk innhold i Python, R, Julia eller Observable.  Quarto kan også integreres med VS Code ved hjelp av en extension.
 
-For å laste ned Quarto, gå til https://quarto.org/docs/download/tarball.html
+For å laste ned Quarto kan dere følge denne [lenken](https://quarto.org/docs/download/tarball.html).
 
 
-Hvis dere ønsker mer detaljer informasjon om datafortellinger og quarto kan dere lese på KNADA docs, som dere finner her https://docs.knada.io/analyse/datafortellinger/.
+Hvis dere ønsker mer informasjon om datafortellinger og quarto kan dere lese på KNADA docs, som dere finner her: [KNADA docs](https://docs.knada.io/analyse/datafortellinger/).
 
 
 ## Demo
 
-NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. Arbeidssøkere er personer som søker arbeid ved NAV og som er tilgjengelige for det arbeidet som søkes. Hovedregelen er at man anses som arbeidssøker hos NAV hvis man har meldt seg eller fornyet meldingen i løpet av de to siste ukene. 
+NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke og år. Du kan lese ler om selve datasettet (her)[https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664]. Arbeidssøkere er personer som søker arbeid ved NAV og som er tilgjengelige for det arbeidet som søkes. Hovedregelen er at man anses som arbeidssøker hos NAV hvis man har meldt seg eller fornyet meldingen i løpet av de to siste ukene. 
 
-For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke og år. Du kan lese ler om selve datasettet [her](https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664). Datasett inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
+ Datasettet inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
 
 ```{python}
 #| label: fig-antall
@@ -55,9 +60,9 @@ For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke 
 import numpy as np
 import matplotlib.pyplot as plt
 import plotly.express as px
-from get_data import get_data
+from hent_data import hent_data
 
-df = get_data()
+df = hent_data()
 hist = px.histogram(df, x = 'aar', y = 'antall_arbeidssokere')
 hist.update_xaxes(tickangle=90, tickmode = 'linear')
 hist.update_layout(bargap = 0.2)
@@ -65,7 +70,7 @@ hist.show()
 
 ```
 
-@fig-antall viser en oversikt over antall arbeidssøkere fordelt på år, for 2002 til 2017. 
+@fig-antall viser en oversikt over antall arbeidssøkere fordelt per år, for 2002 til 2017. 
 
 ```{python}
 #| label: arbeidsøkere-fig
@@ -77,16 +82,15 @@ fig.update_layout(bargap = 0.2)
 fig.show()
 ```
 
-La oss si at vi ønsker å se vidre på hvordan fordelingen ser ut på yrkesgruppen Helse, pleie og omsorg. 
 
-```{python}
-#| label: fig
-#| fig-cap: ""
-#| 
-fig = px.histogram(df[df.yrke_grovgruppe == "Helse, pleie og omsorg"], x= 'aar', y = 'antall_arbeidssokere', color = 'yrke_grovgruppe')
-fig.update_xaxes(tickangle=90, tickmode = 'linear')
-fig.update_layout(bargap = 0.2)
-fig.show()
-```
 
-Her kan jeg også legge inn en helt tilfeldig likning om jeg ønsker det. For eksempel $E = mc^{2}$.
+## Oppgave
+
+La oss si at vi ønsker å se videre på hvordan fordelingen ser ut innen yrkesgruppen Helse, pleie og omsorg. Dere skal prøve å lage deres egen datafortelling basert på datasettet om antall arbeidssøkere. Dere må da hente inn datasettet fra GCP, lage et plott og registrere datafortellingen i datamarkedsplassen. HVis dere ønsker, kan dere ta utgangspunkt i hvordan data er hentet og visualisert i denne datafrortellingen. Oppgaven er altså å:
+
+* Registre ny datafortelling på datamarkedsplassen
+* Hente inn data fra gcp
+* Lage en ny datafortelling med et plott over antall arbeidssøkere fra 2002 til 2017 innen yrke-grovgruppen Helse, pleie og omsorg
+* Laste den nye datafortelingern opp i datamarkedsplassen 
+
+Dere finner en guide til hvordan man registrerer og laster opp en datafortelilng til datamarkedsplassen [her](https://docs.knada.io/analyse/datafortellinger/#lage-datafortelling).

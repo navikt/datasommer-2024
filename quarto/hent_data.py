@@ -1,7 +1,7 @@
 import pandas as pd
 
-def get_data():
-    df = pd.read_csv('../../datasommer/arbeidssokere-yrke.csv', sep= ';')
+def hent_data():
+    df = pd.read_csv('arbeidssokerdata/arbeidssokere-yrke.csv', sep= ';')
     df = df.replace('*', pd.NA)
     df = df.convert_dtypes()
     df.yrke_grovgruppe = df.yrke_grovgruppe.astype('category')
