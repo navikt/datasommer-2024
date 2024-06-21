@@ -8,6 +8,7 @@ number-sections: true
 highlight-style: pygments
 format:
   html:
+    embed-resources: true
     page-layout: article
     code-fold: true
     grid:
@@ -18,10 +19,6 @@ format:
       - text: Antall arbeidssøkere datasett
         href: https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664
 jupyter: python3
-execute: 
-  echo: false
-  warning: false
-  include: false
 ---
 
 ## Intro til datafortellinger
@@ -49,7 +46,7 @@ Hvis dere ønsker mer informasjon om datafortellinger og quarto kan dere lese p�
 
 ## Demo
 
-NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke og år. Du kan lese ler om selve datasettet (her)[https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664]. Arbeidssøkere er personer som søker arbeid ved NAV og som er tilgjengelige for det arbeidet som søkes. Hovedregelen er at man anses som arbeidssøker hos NAV hvis man har meldt seg eller fornyet meldingen i løpet av de to siste ukene. 
+NAV publiserer offisiell statistikk på nav.no om antall arbeidsledige og arbeidssøkere. For denne demoen har vi valgt å bruke data om antall arbeidssøkere etter yrke og år. Du kan lese ler om selve datasettet [her](https://data.norge.no/datasets/a56d54a2-f57b-35e9-a59d-4d0c87e69664). Arbeidssøkere er personer som søker arbeid ved NAV og som er tilgjengelige for det arbeidet som søkes. Hovedregelen er at man anses som arbeidssøker hos NAV hvis man har meldt seg eller fornyet meldingen i løpet av de to siste ukene. 
 
  Datasettet inneholder statistikk om arbeidssøkere fordelt på yrkesbakgrunn, med mer detaljerte yrkesopplysninger enn det som er publisert på nav.no. NAV benytter den internasjonale standarden for yrkesklassifisering, International Standard Classification of Occupations (ISCO) som ILO har utarbeidet. For klassifisering av yrker benyttes ISCO-08 (før januar 2012 ISCO-88 og før mai 2001 ISCO-58). 
 
@@ -88,9 +85,9 @@ fig.show()
 
 La oss si at vi ønsker å se videre på hvordan fordelingen ser ut innen yrkesgruppen Helse, pleie og omsorg. Dere skal prøve å lage deres egen datafortelling basert på datasettet om antall arbeidssøkere. Dere må da hente inn datasettet fra GCP, lage et plott og registrere datafortellingen i datamarkedsplassen. HVis dere ønsker, kan dere ta utgangspunkt i hvordan data er hentet og visualisert i denne datafrortellingen. Oppgaven er altså å:
 
-* Registre ny datafortelling på datamarkedsplassen
 * Hente inn data fra gcp
 * Lage en ny datafortelling med et plott over antall arbeidssøkere fra 2002 til 2017 innen yrke-grovgruppen Helse, pleie og omsorg
-* Laste den nye datafortelingern opp i datamarkedsplassen 
+* Registre ny datafortelling på datamarkedsplassen
+
 
 Dere finner en guide til hvordan man registrerer og laster opp en datafortelilng til datamarkedsplassen [her](https://docs.knada.io/analyse/datafortellinger/#lage-datafortelling).
