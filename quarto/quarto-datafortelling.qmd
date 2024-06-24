@@ -35,7 +35,7 @@ Dashboard: [Hvor er damene?](https://data.ansatt.nav.no/story/7ea943c9-ae07-4d75
 Article: [Veileder for kunnskapsbaserte språkmodeller](https://data.ansatt.nav.no/story/58aa330c-3a72-470e-926f-22e029719879/bakgrunn.html)
 
 
-#### Hva er Quarto?
+### Hva er Quarto?
 Quarto kan produsere nettsider, dashboards og presentasjoner. Quarto .qdm filer inneholder en kombinasjon av  markdown og kodesnutter; Du kan i disse filene skrive kode for å lage dynamisk innhold i Python, R, Julia eller Observable.  Quarto kan også integreres med VS Code ved hjelp av en extension.
 
 For å laste ned Quarto kan dere følge denne [lenken](https://quarto.org/docs/download/tarball.html).
