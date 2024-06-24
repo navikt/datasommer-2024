@@ -83,9 +83,13 @@ fig.show()
 
 ## Oppgave
 
-La oss si at vi ønsker å se videre på hvordan fordelingen ser ut innen yrkesgruppen Helse, pleie og omsorg. Dere skal prøve å lage deres egen datafortelling basert på datasettet om antall arbeidssøkere. Dere må da hente inn datasettet fra GCP, lage et plott og registrere datafortellingen i datamarkedsplassen. HVis dere ønsker, kan dere ta utgangspunkt i hvordan data er hentet og visualisert i denne datafrortellingen. Oppgaven er altså å:
+La oss si at vi ønsker å se videre på hvordan fordelingen ser ut innen yrkesgruppen Helse, pleie og omsorg. Dere skal prøve å lage deres egen datafortelling basert på datasettet om antall arbeidssøkere. Dere må da hente inn datasettet fra GCP, lage et plott og registrere datafortellingen i datamarkedsplassen.
+Oppgaven er altså å:
 
-* Hente inn data fra gcp
+* Laste ned quarto
+* Installere VS code extension
+* Clone repo (https://github.com/navikt/datasommer-2024)
+* Hente inn data fra GCP
 * Lage en ny datafortelling med et plott over antall arbeidssøkere fra 2002 til 2017 innen yrke-grovgruppen Helse, pleie og omsorg
 * Registre ny datafortelling på datamarkedsplassen
 

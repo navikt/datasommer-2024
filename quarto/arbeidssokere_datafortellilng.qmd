@@ -1,0 +1,24 @@
+---
+title: ""
+author: ""
+toc: true
+number-sections: true
+highlight-style: pygments
+format:
+  html:
+    embed-resources: true
+    page-layout: article
+    code-fold: true
+
+jupyter: python3
+---
+
+## Overskrift
+Tekst
+
+```{python}
+#| label: fig
+#| fig-cap: "Caption"
+
+
+```
